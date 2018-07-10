@@ -12,16 +12,20 @@
 		2F18617B20F4DC1200F30185 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F18617920F4DC1200F30185 /* Main.storyboard */; };
 		2F18617D20F4DC1300F30185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F18617C20F4DC1300F30185 /* Assets.xcassets */; };
 		2F18618020F4DC1300F30185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F18617E20F4DC1300F30185 /* LaunchScreen.storyboard */; };
+		2F18618820F4E8AC00F30185 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18618720F4E8AC00F30185 /* Concentration.swift */; };
+		2F18618A20F4E94D00F30185 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18618920F4E94D00F30185 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F18617220F4DC1200F30185 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F18617220F4DC1200F30185 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F18617520F4DC1200F30185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F18617720F4DC1200F30185 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2F18617A20F4DC1200F30185 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F18617C20F4DC1300F30185 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F18617F20F4DC1300F30185 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F18618120F4DC1300F30185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F18618720F4E8AC00F30185 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		2F18618920F4E94D00F30185 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +50,7 @@
 		2F18617320F4DC1200F30185 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F18617220F4DC1200F30185 /* Test.app */,
+				2F18617220F4DC1200F30185 /* Concentration.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +64,8 @@
 				2F18617C20F4DC1300F30185 /* Assets.xcassets */,
 				2F18617E20F4DC1300F30185 /* LaunchScreen.storyboard */,
 				2F18618120F4DC1300F30185 /* Info.plist */,
+				2F18618720F4E8AC00F30185 /* Concentration.swift */,
+				2F18618920F4E94D00F30185 /* Card.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -67,9 +73,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2F18617120F4DC1200F30185 /* Test */ = {
+		2F18617120F4DC1200F30185 /* Concentration */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2F18618420F4DC1300F30185 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildConfigurationList = 2F18618420F4DC1300F30185 /* Build configuration list for PBXNativeTarget "Concentration" */;
 			buildPhases = (
 				2F18616E20F4DC1200F30185 /* Sources */,
 				2F18616F20F4DC1200F30185 /* Frameworks */,
@@ -79,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = Test;
+			name = Concentration;
 			productName = Test;
-			productReference = 2F18617220F4DC1200F30185 /* Test.app */;
+			productReference = 2F18617220F4DC1200F30185 /* Concentration.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +105,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2F18616D20F4DC1200F30185 /* Build configuration list for PBXProject "Test" */;
+			buildConfigurationList = 2F18616D20F4DC1200F30185 /* Build configuration list for PBXProject "Concentration" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2F18617120F4DC1200F30185 /* Test */,
+				2F18617120F4DC1200F30185 /* Concentration */,
 			);
 		};
 /* End PBXProject section */
@@ -137,6 +143,8 @@
 			files = (
 				2F18617820F4DC1200F30185 /* ViewController.swift in Sources */,
 				2F18617620F4DC1200F30185 /* AppDelegate.swift in Sources */,
+				2F18618820F4E8AC00F30185 /* Concentration.swift in Sources */,
+				2F18618A20F4E94D00F30185 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +323,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2F18616D20F4DC1200F30185 /* Build configuration list for PBXProject "Test" */ = {
+		2F18616D20F4DC1200F30185 /* Build configuration list for PBXProject "Concentration" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F18618220F4DC1300F30185 /* Debug */,
@@ -324,7 +332,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F18618420F4DC1300F30185 /* Build configuration list for PBXNativeTarget "Test" */ = {
+		2F18618420F4DC1300F30185 /* Build configuration list for PBXNativeTarget "Concentration" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F18618520F4DC1300F30185 /* Debug */,
