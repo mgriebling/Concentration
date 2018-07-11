@@ -10,7 +10,11 @@ import UIKit
 
 class ConcentrationViewController: UIViewController {
     
-    lazy var game = Concentration(numberOfPairsOfCards: (cards.count+1)/2)
+    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    
+    var numberOfPairsOfCards : Int {
+        return (cards.count+1)/2
+    }
     
     let themes = [
         Theme(symbols:["🥨", "🌮", "🍕", "🍔", "🍟", "🥟", "🍩", "🍦", "🍰", "🍭"], background: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), cardBackground: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)),  // food theme
@@ -30,12 +34,6 @@ class ConcentrationViewController: UIViewController {
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var flipLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    
-    var flipCount = 0 {
-        didSet {
-            flipLabel.text = "Flips: \(flipCount)"
-        }
-    }
     @IBOutlet var cards: [UIButton]!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +42,6 @@ class ConcentrationViewController: UIViewController {
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cards.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -54,6 +51,7 @@ class ConcentrationViewController: UIViewController {
     }
     
     func updateViewFromModel() {
+        let cardBackColor = themes[activeTheme].cardBackground
         for index in cards.indices {
             let button = cards[index]
             let card = game.cards[index]
@@ -62,21 +60,26 @@ class ConcentrationViewController: UIViewController {
                 button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             } else {
                 button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : themes[activeTheme].cardBackground
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : cardBackColor
             }
         }
+        
+        // update the score and flips
+        scoreLabel.textColor = cardBackColor
+        scoreLabel.text = "Score: \(game.score)"
+        flipLabel.textColor = cardBackColor
+        flipLabel.text = "Flips: \(game.flips)"
     }
     
     @IBAction func newGame(_ sender: UIButton) {
         activeTheme = Int(arc4random_uniform(UInt32(themes.count)))
-        game = Concentration(numberOfPairsOfCards: (cards.count+1)/2)
-        flipCount = 0
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         emojis = themes[activeTheme].symbols
         emoji = [Int:String]()
         updateViewFromModel()
     }
     
-    lazy var emojis = themes[activeTheme].symbols
+    var emojis = [String]()
     var emoji = [Int:String]()
     
     func emoji(for card: Card) -> String {
