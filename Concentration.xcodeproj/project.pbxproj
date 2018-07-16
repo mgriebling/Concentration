@@ -44,7 +44,7 @@
 		2F18616920F4DC1200F30185 = {
 			isa = PBXGroup;
 			children = (
-				2F18617420F4DC1200F30185 /* Test */,
+				2F18617420F4DC1200F30185 /* Concentration */,
 				2F18617320F4DC1200F30185 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,7 +57,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2F18617420F4DC1200F30185 /* Test */ = {
+		2F18617420F4DC1200F30185 /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
 				2F18617520F4DC1200F30185 /* AppDelegate.swift */,
@@ -70,7 +70,7 @@
 				2F18618920F4E94D00F30185 /* Card.swift */,
 				2F18618B20F533DC00F30185 /* Theme.swift */,
 			);
-			path = Test;
+			path = Concentration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
