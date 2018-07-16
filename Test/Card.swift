@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct Card {
+public struct Card : Hashable {
     
     var isFaceUp = false
     var isMatched = false
     var wasSeen = false
-    var identifier : Int
+    private var identifier : Int
     
-    static var identifierFactory = 0
+    static private var identifierFactory = 0
     
-    static func getUniqueIdentifier() -> Int {
+    static private func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return identifierFactory
     }

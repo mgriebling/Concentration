@@ -10,31 +10,31 @@ import UIKit
 
 class ConcentrationViewController: UIViewController {
     
-    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
     var numberOfPairsOfCards : Int {
         return (cards.count+1)/2
     }
     
     let themes = [
-        Theme(symbols:["🥨", "🌮", "🍕", "🍔", "🍟", "🥟", "🍩", "🍦", "🍰", "🍭"], background: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), cardBackground: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)),  // food theme
-        Theme(symbols:["🇩🇪", "🇺🇸", "🇨🇦", "🏳️‍🌈", "🇧🇪", "🇬🇧", "🇫🇷", "🇮🇹", "🇱🇹", "🇲🇽"], background: #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1), cardBackground: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)),  // flag theme
-        Theme(symbols:["🐵", "🦁", "🐷", "🐹", "🐶", "🐱", "🐭", "🦊", "🐰", "🐯"], background: #colorLiteral(red: 0.9995340705, green: 0.988355577, blue: 0.4726552367, alpha: 1), cardBackground: #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)),  // animals theme
-        Theme(symbols:["⛷", "🏋️‍♂️", "🤼‍♂️", "🤸‍♀️", "🏌️‍♀️", "🏇", "🏊‍♀️", "🚴‍♀️", "🏄🏾‍♀️", "🤺"], background: #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1), cardBackground: #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)),  // sports theme
-        Theme(symbols:["🧐", "😃", "😇", "😎", "🤩", "😫", "🤬", "☹️", "😭", "🤯"], background: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cardBackground: #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)),  // faces theme
-        Theme(symbols:["💤", "♻️", "🔆", "🎵", "🔵", "🔔", "♥️", "💲", "🚭", "❌"], background: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), cardBackground: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))   // symbols theme
+        Theme(symbols:"🥨🌮🍕🍔🍟🥟🍩🍦🍰🍭", background: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), cardBackground: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)),  // food theme
+        Theme(symbols:"🇩🇪🇺🇸🇨🇦🏳️‍🌈🇧🇪🇬🇧🇫🇷🇮🇹🇱🇹🇲🇽", background: #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1), cardBackground: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)),  // flag theme
+        Theme(symbols:"🐵🦁🐷🐹🐶🐱🐭🦊🐰🐯", background: #colorLiteral(red: 0.9995340705, green: 0.988355577, blue: 0.4726552367, alpha: 1), cardBackground: #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)),  // animals theme
+        Theme(symbols:"⛷🏋️‍♂️🤼‍♂️🤸‍♀️🏌️‍♀️🏇🏊‍♀️🚴‍♀️🏄🏾‍♀️🤺", background: #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1), cardBackground: #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)),  // sports theme
+        Theme(symbols:"🧐😃😇😎🤩😫🤬☹️😭🤯", background: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cardBackground: #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)),  // faces theme
+        Theme(symbols:"💤♻️🔆🎵🔵🔔♥️💲🚭❌", background: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), cardBackground: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))   // symbols theme
     ]
-    var activeTheme = 0 {
+    private(set) var activeTheme = 0 {
         didSet {
             backgroundView.backgroundColor = themes[activeTheme].background
             updateViewFromModel()
         }
     }
     
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var flipLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet var cards: [UIButton]!
+    @IBOutlet private weak var backgroundView: UIView!
+    @IBOutlet private weak var flipLabel: UILabel!
+    @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private var cards: [UIButton]!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -72,22 +72,22 @@ class ConcentrationViewController: UIViewController {
     }
     
     @IBAction func newGame(_ sender: UIButton) {
-        activeTheme = Int(arc4random_uniform(UInt32(themes.count)))
+        activeTheme = themes.count.arc4random
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         emojis = themes[activeTheme].symbols
-        emoji = [Int:String]()
+        emoji = [Card:String]()
         updateViewFromModel()
     }
     
-    var emojis = [String]()
-    var emoji = [Int:String]()
+    private var emojis = ""
+    private var emoji = [Card:String]()
     
-    func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojis.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(emojis.count)))
-            emoji[card.identifier] = emojis.remove(at: randomIndex)
+    private func emoji(for card: Card) -> String {
+        if emoji[card] == nil, emojis.count > 0 {
+            let index = emojis.index(emojis.startIndex, offsetBy: emojis.count.arc4random)
+            emoji[card] = String(emojis.remove(at: index))
         }
-        return emoji[card.identifier] ?? "?"
+        return emoji[card] ?? "?"
     }
 
 }

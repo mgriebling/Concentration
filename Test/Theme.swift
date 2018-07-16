@@ -8,9 +8,8 @@
 
 import UIKit
 
-struct Theme {
-    
-    let symbols : [String]
+public struct Theme {
+    let symbols : String
     let background : UIColor
     let cardBackground : UIColor
     

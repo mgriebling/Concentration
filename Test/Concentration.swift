@@ -10,23 +10,13 @@ import Foundation
 
 class Concentration {
     
-    var cards = [Card]()
-    var score = 0
-    var flips = 0
+    private(set) var cards = [Card]()
+    private(set) var score = 0
+    private(set) var flips = 0
     
     var indexOfOneAndOnlyFaceUpCard : Int? {
         get {
-            var foundIndex : Int?
-            for index in cards.indices {
-                if cards[index].isFaceUp {
-                    if foundIndex == nil {
-                        foundIndex = index
-                    } else {
-                        return nil
-                    }
-                }
-            }
-            return foundIndex
+            return cards.indices.filter { cards[$0].isFaceUp }.oneAndOnly
         }
         set {
             for index in cards.indices {
@@ -36,11 +26,12 @@ class Concentration {
     }
     
     func chooseCard(at index: Int) {
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards!")
         flips += 1
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // check if cards match
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     score += 2
@@ -58,18 +49,44 @@ class Concentration {
         }
     }
     
+    private func removeRandomCard() -> Card {
+        return cards.remove(at: cards.count.arc4random)
+    }
+    
     init(numberOfPairsOfCards: Int) {
-        for _ in 1...numberOfPairsOfCards {
+        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards)): you must have at least one pair of cards")
+        for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
         // Shuffle the cards
         var shuffledCards = [Card]()
         for _ in cards {
-            let randomIndex = Int(arc4random_uniform(UInt32(cards.count)))
-            shuffledCards.append(cards.remove(at: randomIndex))
+            shuffledCards.append(removeRandomCard())
         }
         cards = shuffledCards
+    }
+    
+}
+
+extension Collection {
+    
+    var oneAndOnly: Element? {
+        return count == 1 ? first : nil
+    }
+    
+}
+
+extension Int {
+    
+    var arc4random: Int {
+        if self > 0 {
+            return Int(arc4random_uniform(UInt32(self)))
+        } else if self < 0 {
+            return -Int(arc4random_uniform(UInt32(abs(self))))
+        } else {
+            return 0
+        }
     }
     
 }
